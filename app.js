@@ -28,10 +28,10 @@
   function getValues() {
     var storedValues = window.localStorage.myitems;
     if (!storedValues) {
-      list.innerHTML = '<li>Testing To-do Items</li>' +
-        '<li>Test Item 1</li>' +
-        '<li>Test Item 2</li>' +
-        '<li>Test Item 3</li>';
+      // list.innerHTML = '<li>Testing To-do Items</li>' +
+      //   '<li>Test Item 1</li>' +
+      //   '<li>Test Item 2</li>' +
+      //   '<li>Test Item 3</li>';
     } else {
       list.innerHTML = storedValues;
     }
