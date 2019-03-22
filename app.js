@@ -1,18 +1,20 @@
-(function () {
+// To-Do IIFE
+(() => {
+  const list = document.querySelector('#list');
+  const form = document.querySelector('form');
+  const item = document.querySelector('#item');
 
-  var list = document.querySelector('#list'),
-    form = document.querySelector('form'),
-    item = document.querySelector('#item');
-
-  form.addEventListener('submit', function (e) {
+  // Form Submit
+  form.addEventListener('submit', e => {
     e.preventDefault();
-    list.innerHTML += '<li>' + item.value + '</li>';
+    list.innerHTML += `<li>${item.value}</li>`;
     store();
     item.value = "";
-  }, false)
+  }, false);
 
-  list.addEventListener('click', function (e) {
-    var t = e.target;
+  // List Click
+  list.addEventListener('click', e => {
+    const t = e.target;
     if (t.classList.contains('checked')) {
       t.parentNode.removeChild(t);
     } else {
@@ -21,20 +23,14 @@
     store();
   }, false)
 
-  function store() {
-    window.localStorage.myitems = list.innerHTML;
+  // LocalStorage R/W
+  const store = () => {
+    window.localStorage.myitems = list.innerHTML
+  }
+  const getValues = () => {
+    list.innerHTML = (window.localStorage.myitems) ? window.localStorage.myitems : ''
   }
 
-  function getValues() {
-    var storedValues = window.localStorage.myitems;
-    if (!storedValues) {
-      // list.innerHTML = '<li>Testing To-do Items</li>' +
-      //   '<li>Test Item 1</li>' +
-      //   '<li>Test Item 2</li>' +
-      //   '<li>Test Item 3</li>';
-    } else {
-      list.innerHTML = storedValues;
-    }
-  }
+  // Pull from LocalStorage on Load.
   getValues();
 })();
